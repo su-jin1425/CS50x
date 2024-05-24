@@ -1,0 +1,33 @@
+sort1 uses: Bubble Sort
+
+reversed50000 -> 4.885s
+random50000 -> 6.031s
+sorted50000 -> 0.489s
+
+How do you know?
+
+sort1 uses Bubble Sort: The large difference between sorted and unsorted input times matches
+Bubble Sort's best-case scenario when the input is already sorted.
+
+
+sort2 uses: Merge Sort
+
+reversed50000 -> 0.727s
+random50000 -> 0.639s
+sorted50000 -> 0.500s
+
+How do you know?:
+
+sort2 uses Merge Sort: Consistent performance across different input types aligns with Merge Sort's
+O(nlogn) complexity for all cases.
+
+sort3 uses: Selection Sort
+
+reversed50000 -> 2.783s
+random50000 -> 2.679s
+sorted50000 -> 2.146s
+
+How do you know?:
+
+sort3 uses Selection Sort: Moderate performance on all inputs and slight improvement on sorted input suggests Selection Sort,
+which always performs O(n^2) comparisons but can have fewer swaps if the array is sorted.
