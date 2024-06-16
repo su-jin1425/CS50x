@@ -5,16 +5,21 @@
 {% endblock %}
 
 {% block main %}
-    <h2>Sign Up</h2>
     <form action="/register" method="post">
-        <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        <div class="mb-2">
+            <label for="username">Username</label>
         </div>
-        <div class="form-group">
-            <input class="form-control" name="password" placeholder="Password" type="password">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="e.g. user123" required type="text">
         </div>
-        <div class="form-group">
-            <input class="form-control" name="confirmation" placeholder="Password (again!)" type="password">
+        <div class="mb-2">
+            <label for="password">Password</label>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="password" name="password" minlength="8" placeholder="Atleast 8 characters" required type="password">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="confirmation" minlength="8" placeholder="Confirm Password" required type="password">
         </div>
         <button class="btn btn-primary" type="submit">Register</button>
     </form>

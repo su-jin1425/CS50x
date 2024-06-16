@@ -1,52 +1,42 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Index
+    Portfolio
 {% endblock %}
 
 {% block main %}
-<h2>Portfolio</h2>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Symbol</th>
-            <th>Shares</th>
-            <th>Current price</th>
-            <th>Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Cash</td>
-            <td></td>
-            <td></td>
-            <td>{{ balance | usd }}</td>
-
-        </tr>
-        {% for asset in port %}
-        <tr>
-            <td>{{ asset["symbol"] }}</td>
-            <td>{{ asset["SUM(quantity)"] }}</td>
-            <td>{{ prices[loop.index0] | usd }}</td>
-            <td>{{ ((prices[loop.index0])*asset["SUM(quantity)"]) | usd }}</td>
-        </tr>
-        {% endfor %}
-
-        <tr>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-
-        <tr>
-            <td><b>Net total</b></td>
-            <td></td>
-            <td></td>
-            <td>{{ total_bal | usd }}</td>
-        </tr>
-    </tbody>
-</table>
-
+    <table>
+        <thead>
+            <tr>
+                <th class="left">Stock Symbol</th>
+                <th class="left">Name</th>
+                <th class="right">Shares (UN)</th>
+                <th class="right">Current Price (USD)</th>
+                <th class="right">Total (USD)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <td class="left">{{ stock["symbol"] }}</td>
+                    <td class="left">{{ lookup(stock["symbol"])["name"] }}</td>
+                    <td class="right">{{ stock["shares"] }}</td>
+                    <td class="right">{{ lookup(stock["symbol"])["price"] | usd }}</td>
+                    <td class="right">{{ (stock["shares"] * lookup(stock["symbol"])["price"]) | usd }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td><td></td><td></td>
+                <th class="right">Cash (USD)</td>
+                <td class="right">{{ user_cash | usd }}</td>
+            </tr>
+            <tr>
+                <td></td><td></td><td></td>
+                <th class="right">Total (USD)</td>
+                <td class="right">{{ (user_cash + stocks_total_price) | usd }}</td>
+            </tr>
+        </tfoot>
+    </table>
 {% endblock %}
